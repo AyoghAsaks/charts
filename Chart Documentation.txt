@@ -1,0 +1,134 @@
+Coingecko
+---------
+https://www.coingecko.com/en/api
+
+https://www.coingecko.com/en/api/documentation
+
+API: 'https://api.coingecko.com/api/v3'
+      baseURL = https://api.coingecko.com/api/v3
+      
+coins/market API
+----------------
+Request URL:       https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false
+Or, you could use: https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
+
+trending API
+------------
+GET: Request URL: 'https://api.coingecko.com/api/v3/search/trending'
+                   baseURL/search/trending
+
+Packages:
+---------
+npm i framer-motion
+npm i axios
+npm i react-router-dom
+npm i react-bootstrap bootstrap
+
+{
+  "coins": [
+    {
+      "item": {
+        "id": "baby-doge-coin",
+        "coin_id": 16125,
+        "name": "Baby Doge Coin",
+        "symbol": "BABYDOGE",
+        "market_cap_rank": 68,
+        "thumb": "https://assets.coingecko.com/coins/images/16125/thumb/Baby_Doge.png?1623044048",
+        "small": "https://assets.coingecko.com/coins/images/16125/small/Baby_Doge.png?1623044048",
+        "large": "https://assets.coingecko.com/coins/images/16125/large/Baby_Doge.png?1623044048",
+        "slug": "baby-doge-coin",
+        "price_btc": 2.0068818615067497e-13,
+        "score": 0
+      }
+    }
+  ],
+  "exchanges": []
+}
+
+market_chart API: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7
+----------------
+/coins/{id}/market_chart
+NOTE: id = bitcoin
+           https://api.coingecko.com/api/v3/coins/id/market_chart?vs_currency=usd&days=7
+       
+
+{
+  "prices": [
+    [
+      1675648803726,
+      22998.93300386428
+    ],
+    [
+      1675652807333,
+      22947.660149768646
+    ]
+ ]
+}
+
+                             MAPPING THROUGH A TABLE STRUCTURE
+                             ---------------------------------
+import { Reorder } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+
+const Ranking_Table = () => {
+      //Code that gets API from backend
+      let { loading, rankingTable, errorMessage } = state; //Destructure the object "state" to get its individual objects.
+	return (
+        <section>
+           <Container>
+              <Row>
+                 <Col>
+                   <p>
+                     Ranking Table
+                   </p>
+                 </Col>
+              </Row>
+              
+              <Row>
+                <Col>
+                   <table className="table table-striped text-center">
+                      <thead>
+                         <tr>
+                           <th>
+                              Heading 1
+                           </th>
+                           <th>
+                              Heading 2
+                           </th>
+                         </tr>
+                      </thead>
+
+                      <tbody>
+                           {rankingTable.map(cryptocurrency => {
+                               <Reorder.Item key={cryptocurrency.id}>             
+                                  <th scope="row>
+                                      {cryptocurrency.image}
+                                  </th>
+                       
+                                  <td>
+                                     <div className=''>{cryptocurrency.name}</div>
+                                  </td>
+                                </Reorder.Item>
+                           })}
+                      </tbody>
+                   </table>
+                </Col>
+              </Row>
+           </Container>
+        </section>
+      )
+}
+
+
+
+
+<img src="https://www.pngitem.com/pimgs/m/22-220721_circled-user-male-type-user-colorful-icon-png.png" alt="" className='img-fluid contact-img ms-3'/>
+
+index.css
+---------
+.contact-img {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+}
